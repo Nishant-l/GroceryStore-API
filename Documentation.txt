@@ -44,9 +44,9 @@ url : {url}/customers/:id
 
     request:
     {
-        "name": "nishant",
-        "phone": 1234567,
-        "email": "n@n.com"
+        "name": "nishant",  
+        "phone": 1234567,   //Required Unique
+        "email": "n@n.com"  //Required Unique
     }
 
     responce:
@@ -81,7 +81,28 @@ url : {url}/customers/:id
 	Method :  POST
 	url: {url}:/product
 
+    Request:
+    {
+        "productCategory":"froot",          //Required 
+        "productInfo":"Apple",               //Required Unique
+        "price":"120",                             //Required 
+        "quantityAvailable":"99"            //Required 
+    }
 
+    Responce:
+    {
+        "message": "Product created successfully",
+        "id": "632491a6c8e12a662354f0ac"
+    }
+
+    error:
+        1. Unique field required for productInfo
+
+        Responce:
+        {
+            "errors": "uniqueField Required",
+            "message": "productInfo should be unique, Give Product info Alredy Exist"
+        }
 
 
 

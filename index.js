@@ -52,7 +52,23 @@ app.post('/customer', async (req, res) => {
 
 
 //Endpoint To create new Product
+app.post('/product', (req, res)=>{
+    console.log(req.body);
+    Product.create(req.body, (err, newProduct)=>{
+        if(err){
+            console.log(err);
+            return res.status(400).send({
+                errors: "uniqueField Required",
+                message:"productInfo should be unique, Give Product info Alredy Exist"
+            });
+        }
 
+        return res.status(200).send({
+            message:'Product created successfully',
+            id: newProduct._id
+        });
+    })
+})
 
 
 app.listen(port, (err)=>{
