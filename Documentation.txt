@@ -1,0 +1,91 @@
+Rest Endpoints:
+
+1. Api to fetch customer list
+	
+    Method  :  Post
+	URL 	   :  {URI}/customers
+	
+	Request  :
+                    {
+                        pageOffset: 0
+                        pageLimit: 10
+                    }
+    
+    Response :
+                    {
+                        
+                    }
+
+
+
+
+2. Api to fetch specific customers order list
+
+Method :  GET
+url : {url}/orders:customerId
+
+
+
+
+
+3. Api to fetch specific customer detail with max order in year
+
+Method :  GET
+url : {url}/customers/:id
+
+
+
+
+
+4. Api to create new Customer
+
+	Method :  POST
+	url: {url}:/customer
+
+    request:
+    {
+        "name": "nishant",
+        "phone": 1234567,
+        "email": "n@n.com"
+    }
+
+    responce:
+    {
+        "name": "nishant",
+        "phone": 12345678,
+        "email": "nn@n.com",
+        "_id": "6324887a53001878a4cb2b68",
+        "__v": 0
+    }
+
+    error:
+        1.unique field validation on email and phone
+            responce: 
+            {
+                "errors": "uniqueField Required",
+                "message": "needs unique email or phone"
+            }
+
+        2. Required fields Not passed
+            Responce:
+            {
+                "error": "ValidationError",
+                "message": "Customer validation failed: email: Path `email` is required."
+            }
+
+
+
+                
+5. Api to create new Product
+
+	Method :  POST
+	url: {url}:/product
+
+
+
+
+
+6. Api to update product price
+
+	Method :  PUT
+	url: {url}:/product:id
