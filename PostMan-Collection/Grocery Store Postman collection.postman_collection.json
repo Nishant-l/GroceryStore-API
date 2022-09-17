@@ -38,7 +38,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"nishant\",\n    \"phone\": 12345,\n    \"email\": \"nnnn@n.com\"\n}",
+					"raw": "{\n    \"name\": \"nishant\",\n    \"phone\": 123456789,\n    \"email\": \"nnn@n.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
