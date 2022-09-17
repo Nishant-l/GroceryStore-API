@@ -79,3 +79,21 @@ module.exports.findSpecificCustomerInfo = (req, res)=>{
         })
     }
 }
+
+module.exports.getAllCustomer = async (req,res)=>{
+    const {pageOffset, pageLimit} = req.body;
+    if(pageOffset<=0) return res.send({
+        error:'page offset out of limit',
+        message: 'page offset start from 1'
+    })
+    console.log(pageOffset, pageLimit)
+    const options ={
+        page: parseInt(pageOffset),
+        limit: parseInt(pageLimit)
+    }
+    const mon = await Customer.paginate({ }, options);
+
+    return res.json(mon)
+
+    // return res.send('')
+}

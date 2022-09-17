@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePeginate = require('mongoose-paginate');
 
 const customerSchama = new mongoose.Schema({
     name: {
@@ -25,6 +26,8 @@ const customerSchama = new mongoose.Schema({
         type: Number
     }
 })
+
+customerSchama.plugin(mongoosePeginate);
 
 const Customer = mongoose.model('Customer', customerSchama);
 
