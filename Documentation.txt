@@ -40,7 +40,88 @@ Rest Endpoints:
                         or
             {url}/customers/?email=a@a.com&phone=123&order=true
 
+    Responce:
+    --------------------------
+                    {
+                        "_id": "6325bf31443e6d83ce7bd6b9",
+                        "name": "nishant",
+                        "phone": 123456789,
+                        "email": "nnn@n.com",
+                        "orders": [
+                            {
+                                "_id": "6325bf8c443e6d83ce7bd6c4",
+                                "productList": [
+                                    {
+                                        "_id": "6325bf49443e6d83ce7bd6bb",
+                                        "productCategory": "frout",
+                                        "productInfo": "apple",
+                                        "price": "200",
+                                        "quantityAvailable": "99",
+                                        "__v": 0
+                                    },
+                                    {
+                                        "_id": "6325bf5f443e6d83ce7bd6bd",
+                                        "productCategory": "frout",
+                                        "productInfo": "banana",
+                                        "price": "10",
+                                        "quantityAvailable": "99",
+                                        "__v": 0
+                                    }
+                                ],
+                                "totalPrise": 300,
+                                "paymentInfo": {
+                                    "paymentType": "UPI",
+                                    "_id": "6325bf8c443e6d83ce7bd6c5"
+                                },
+                                "customerId": "6325bf31443e6d83ce7bd6b9",
+                                "createdAt": "2022-09-17T12:37:32.671Z",
+                                "updatedAt": "2022-09-17T12:37:32.671Z",
+                                "__v": 0
+                            },
+                            {
+                                "_id": "6325c80c5bfdceb829f43d60",
+                                "productList": [
+                                    {
+                                        "_id": "6325bf49443e6d83ce7bd6bb",
+                                        "productCategory": "frout",
+                                        "productInfo": "apple",
+                                        "price": "200",
+                                        "quantityAvailable": "99",
+                                        "__v": 0
+                                    },
+                                    {
+                                        "_id": "6325bf5f443e6d83ce7bd6bd",
+                                        "productCategory": "frout",
+                                        "productInfo": "banana",
+                                        "price": "10",
+                                        "quantityAvailable": "99",
+                                        "__v": 0
+                                    }
+                                ],
+                                "totalPrise": 300,
+                                "paymentInfo": {
+                                    "paymentType": "UPI",
+                                    "_id": "6325c80c5bfdceb829f43d61"
+                                },
+                                "customerId": "6325bf31443e6d83ce7bd6b9",
+                                "createdAt": "2022-09-17T13:13:48.059Z",
+                                "updatedAt": "2022-09-17T13:13:48.059Z",
+                                "__v": 0
+                            }
+                        ],
+                        "totalSpendOnAllOrders": 600,
+                        "__v": 2
+                    }
+    --------------------------
+           
+            error
+            1.if nothing is passed in query param
 
+            Status:400
+            {
+                "error": "bad request",
+                "message": "email or phone required in query param"
+            }
 
 
 3. Api to fetch specific customer detail with max order in year
