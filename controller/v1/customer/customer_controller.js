@@ -1,3 +1,4 @@
+const { populate } = require('../../../models/customer');
 const Customer = require('../../../models/customer');
 const Product   =  require('../../../models/product')
 
@@ -33,7 +34,8 @@ module.exports.createCustomer = async (req, res) => {
 }
 
 module.exports.findSpecificCustomerInfo = (req, res)=>{
-    const{email, phone} = req.query;
+    const{email, phone, order} = req.query;
+    // if(order == null) order = false;
 
     if(!email && !phone) return res.status(400).send({
         error:'bad request',
@@ -42,47 +44,85 @@ module.exports.findSpecificCustomerInfo = (req, res)=>{
 
     if(email!=null){
         const query = {email:email};
-        Customer.findOne(query, (err, customer)=>{
-            if(err){
-                console.log(err);
-                return res.status(500).send({
-                    error:'inrenal server error',
-                    message:'failed to query database'
-                })
-            }
-            return res.status(200).send({
-                email:customer.email,
-                phone:customer.phone,
-                id:customer.id,
-                totalSpendOnAllOrders:customer.totalSpendOnAllOrders
+
+        if(order){
+            Customer
+            .findOne(query)
+            .populate({
+                path:'orders',
+                populate:{
+                    path:'productList'
+                }
             })
-        })
+            .exec((err, ord)=>{
+                console.log(ord)
+                return res.send(ord);
+            })
+        }
+        else{
+            Customer.findOne(query, (err, customer)=>{
+                if(err){
+                    console.log(err);
+                    return res.status(500).send({
+                        error:'inrenal server error',
+                        message:'failed to query database'
+                    })
+                }
+                return res.status(200).send({
+                    email:customer.email,
+                    phone:customer.phone,
+                    id:customer.id,
+                    totalSpendOnAllOrders:customer.totalSpendOnAllOrders
+                })
+            })
+        }
     }
 
     else if(phone){
         const query = {phone:phone};
 
-        Customer.findOne(query, (err, customer)=>{
-            if(err){
-                console.log(err);
-                return res.status(500).send({
-                    error:'inrenal server error',
-                    message:'failed to query database'
-                })
-            }
-            return res.status(200).send({
-                email:customer.email,
-                phone:customer.phone,
-                id:customer.id,
-                totalSpendOnAllOrders:customer.totalSpendOnAllOrders
+        if(order){
+            Customer
+            .findOne(query)
+            .populate({
+                path:'orders',
+                populate:{
+                    path:'productList'
+                }
             })
-        })
+            .exec((err, ord)=>{
+                console.log(ord)
+                return res.send(ord);
+            })
+        }
+        else{
+            Customer.findOne(query, (err, customer)=>{
+                if(err){
+                    console.log(err);
+                    return res.status(500).send({
+                        error:'inrenal server error',
+                        message:'failed to query database'
+                    })
+                }
+                return res.status(200).send({
+                    email:customer.email,
+                    phone:customer.phone,
+                    id:customer.id,
+                    totalSpendOnAllOrders:customer.totalSpendOnAllOrders
+                })
+            })
+        }
+
     }
 }
 
 module.exports.getAllCustomer = async (req,res)=>{
     const {pageOffset, pageLimit} = req.body;
-    if(pageOffset<=0) return res.send({
+
+    if(pageOffset == null) pageOffset=1;
+    if(pageLimit == null) pageLimit=10;
+
+    if(pageOffset<=0) return res.status(400).send({
         error:'page offset out of limit',
         message: 'page offset start from 1'
     })

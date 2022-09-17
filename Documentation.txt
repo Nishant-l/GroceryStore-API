@@ -7,13 +7,25 @@ Rest Endpoints:
 	
 	Request  :
                     {
-                        pageOffset: 0
-                        pageLimit: 10
+                        pageOffset: 1   //Default 1
+                        pageLimit: 10    //Default 10
                     }
     
     Response :
                     {
-                        
+                        "docs": [{...},{...},{...}],
+                        "total": 4,
+                        "limit": 10,
+                        "page": 4,
+                        "pages": 1
+                    }
+
+                    error:
+                    if pageOffset is 0
+                    Status 400
+                    {
+                        "error": "page offset out of limit",
+                        "message": "page offset start from 1"
                     }
 
 
@@ -21,9 +33,12 @@ Rest Endpoints:
 
 2. Api to fetch specific customers order list
 
-Method :  GET
-url : {url}/orders:customerId
-
+    Method :  GET
+    url : {url}/customers/?phone=123&order=true
+                        or
+            {url}/customers/?email=a@a.com&order=true
+                        or
+            {url}/customers/?email=a@a.com&phone=123&order=true
 
 
 
@@ -33,9 +48,9 @@ url : {url}/orders:customerId
     Method :  GET
     url : {url}/customers/?phone=123
                         or
-        {url}/customers/?email=a@a.com
+            {url}/customers/?email=a@a.com
                         or
-        {url}/customers/?email=a@a.com&phone=123
+            {url}/customers/?email=a@a.com&phone=123
 
         Responce:
              {
