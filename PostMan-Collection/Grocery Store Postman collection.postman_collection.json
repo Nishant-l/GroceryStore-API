@@ -1,0 +1,257 @@
+{
+	"info": {
+		"_postman_id": "02c0297e-4fb7-44da-85c5-7ea9112e560a",
+		"name": "Grocery Store Postman collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"a\":\"a\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}",
+					"host": [
+						"{{BaseUrl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"nishant\",\n    \"phone\": 12345,\n    \"email\": \"nnnn@n.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIurl}}/customer",
+					"host": [
+						"{{APIurl}}"
+					],
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productCategory\":\"Frout\",\n    \"productInfo\":\"banana\",\n    \"price\":\"10\",\n    \"quantityAvailable\":\"99\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIurl}}/product",
+					"host": [
+						"{{APIurl}}"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change product price",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productInfo\": \"apple\",\n    \"price\": 200\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIurl}}/product",
+					"host": [
+						"{{APIurl}}"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createOrder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productList\":[\"apple\", \"banana\"],\n    \"totalPrise\": 300,\n    \"paymentInfo\": {\n        \"paymentType\":\"UPI\"\n    },\n    \"customerPhone\":\"123456789\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIurl}}/order",
+					"host": [
+						"{{APIurl}}"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSpecific customer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIurl}}/customer/?phone=123456789&email=nnn@n.com",
+					"host": [
+						"{{APIurl}}"
+					],
+					"path": [
+						"customer",
+						""
+					],
+					"query": [
+						{
+							"key": "phone",
+							"value": "123456789"
+						},
+						{
+							"key": "email",
+							"value": "nnn@n.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSpecific customer order List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIurl}}/customer/?phone=123456789&email=nnn@n.com&order=true",
+					"host": [
+						"{{APIurl}}"
+					],
+					"path": [
+						"customer",
+						""
+					],
+					"query": [
+						{
+							"key": "phone",
+							"value": "123456789"
+						},
+						{
+							"key": "email",
+							"value": "nnn@n.com"
+						},
+						{
+							"key": "order",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Customer list",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pageOffset\": 1,\n    \"pageLimit\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIurl}}/allCustomer",
+					"host": [
+						"{{APIurl}}"
+					],
+					"path": [
+						"allCustomer"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "APIurl",
+			"value": "http://localhost:8081/api/v1",
+			"type": "default"
+		},
+		{
+			"key": "BaseUrl",
+			"value": "http://localhost:8081",
+			"type": "default"
+		}
+	]
+}
