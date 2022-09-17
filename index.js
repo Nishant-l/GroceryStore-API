@@ -11,11 +11,7 @@ app.use(express.json());
 //db Schamas
 // const Customer = require('./models/customer');
 // const Product = require('./models/product');
-
-
-//Controllers
-const customerController = require('./controller/v1/customer/customer_controller');
-const productController =  require('./controller/v1/product/product_controller');
+// const Order = require('./models/order');
 
 
 //Router

@@ -31,7 +31,13 @@ url : {url}/orders:customerId
 3. Api to fetch specific customer detail with max order in year
 
 Method :  GET
-url : {url}/customers/:id
+url : {url}/customers/?phone=123
+                        or
+        {url}/customers/?email=a@a.com
+                        or
+        {url}/customers/?email=a@a.com&phone=123
+
+        
 
 
 
@@ -150,3 +156,35 @@ url : {url}/customers/:id
                         error: 'server error',
                         message: 'error occured while updeting changes'
                     }
+
+
+
+7. Api to create new order
+
+    Request:
+                {
+                    "productList":["apple", "banana"],  //REQUIRED
+                    "totalPrise": 300,                          //REQUIRED
+                    "paymentInfo": {                            //REQUIRED
+                        "paymentType":"UPI"
+                    },
+                    "customerPhone":"123456789"      //REQUIRED
+                }
+
+    Responce:
+                {
+                    "productList": [
+                        "6325bf49443e6d83ce7bd6bb",
+                        "6325bf5f443e6d83ce7bd6bd"
+                    ],
+                    "totalPrise": 300,
+                    "paymentInfo": {
+                        "paymentType": "UPI",
+                        "_id": "6325bf8c443e6d83ce7bd6c5"
+                    },
+                    "customerId": "6325bf31443e6d83ce7bd6b9",
+                    "_id": "6325bf8c443e6d83ce7bd6c4",
+                    "createdAt": "2022-09-17T12:37:32.671Z",
+                    "updatedAt": "2022-09-17T12:37:32.671Z",
+                    "__v": 0
+                }

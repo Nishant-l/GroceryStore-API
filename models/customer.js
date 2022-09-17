@@ -14,6 +14,15 @@ const customerSchama = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
+    },
+    orders: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Orders'
+        }
+    ],
+    totalSpendOnAllOrders: {
+        type: Number
     }
 })
 

@@ -7,7 +7,8 @@ module.exports.createCustomer = async (req, res) => {
     const cust = await Customer.create({
         name: req.body.name,
         phone: req.body.phone,
-        email: req.body.email.toLocaleLowerCase()
+        email: req.body.email.toLocaleLowerCase(),
+        totalSpendOnAllOrders:0
     },(err, newCustomer)=>{
         if(err){
             console.log('error occured while creating user', err)
