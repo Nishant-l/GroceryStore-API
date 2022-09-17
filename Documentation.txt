@@ -50,6 +50,7 @@ url : {url}/customers/:id
     }
 
     responce:
+    Status:200
     {
         "name": "nishant",
         "phone": 12345678,
@@ -58,20 +59,22 @@ url : {url}/customers/:id
         "__v": 0
     }
 
-    error:
-        1.unique field validation on email and phone
-            responce: 
-            {
-                "errors": "uniqueField Required",
-                "message": "needs unique email or phone"
-            }
+        error:
+            1.unique field validation on email and phone
+                responce: 
+                status:400
+                {
+                    "errors": "uniqueField Required",
+                    "message": "needs unique email or phone"
+                }
 
-        2. Required fields Not passed
-            Responce:
-            {
-                "error": "ValidationError",
-                "message": "Customer validation failed: email: Path `email` is required."
-            }
+            2. Required fields Not passed
+                status:400
+                Responce:
+                {
+                    "error": "ValidationError",
+                    "message": "Customer validation failed: email: Path `email` is required."
+                }
 
 
 
@@ -90,6 +93,7 @@ url : {url}/customers/:id
     }
 
     Responce:
+    Status: 200
     {
         "message": "Product created successfully",
         "id": "632491a6c8e12a662354f0ac"
@@ -97,7 +101,7 @@ url : {url}/customers/:id
 
     error:
         1. Unique field required for productInfo
-
+        Status: 400
         Responce:
         {
             "errors": "uniqueField Required",
@@ -108,5 +112,41 @@ url : {url}/customers/:id
 
 6. Api to update product price
 
-	Method :  PUT
-	url: {url}:/product:id
+	Method :  PATCH
+	url: {url}:/product
+
+    Request:
+                {
+                    "productInfo": "apple",     //Required
+                    "price": 200                       //Required
+                }
+
+    Responce:
+                    Status: 200
+                    {
+                        "message": "price of apple updated to 200 successfully"
+                    }
+
+
+                    errors
+
+                    1. If product does not exist whose prise tring to be updated
+                    Status: 404
+                    {
+                        error:'not found',
+                        message:'product prise you are trying to chenge does not exist'
+                    }
+
+                    2. Error occured while accessing Endpoints
+                    status: 500
+                    {
+                        error: 'server error',
+                        message: 'error occured while updeting changes'
+                    }
+
+                    3. Error occured while saving changes to database
+                    Status: 500
+                    {
+                        error: 'server error',
+                        message: 'error occured while updeting changes'
+                    }
