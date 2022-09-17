@@ -6,6 +6,7 @@ const customerController = require('../../../../controller/v1/customer/customer_
 
 
 //endpoint to Create New Customer
-router.post('/', customerController.createCustomer)
+router.post('/', customerController.createCustomer);
+router.get('/', customerController.findSpecificCustomerInfo);
 
 module.exports = router;

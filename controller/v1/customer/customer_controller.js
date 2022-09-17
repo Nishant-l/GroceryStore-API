@@ -32,3 +32,50 @@ module.exports.createCustomer = async (req, res) => {
     })
 }
 
+module.exports.findSpecificCustomerInfo = (req, res)=>{
+    const{email, phone} = req.query;
+
+    if(!email && !phone) return res.status(400).send({
+        error:'bad request',
+        message:'email or phone required in query param'
+    })
+
+    if(email!=null){
+        const query = {email:email};
+        Customer.findOne(query, (err, customer)=>{
+            if(err){
+                console.log(err);
+                return res.status(500).send({
+                    error:'inrenal server error',
+                    message:'failed to query database'
+                })
+            }
+            return res.status(200).send({
+                email:customer.email,
+                phone:customer.phone,
+                id:customer.id,
+                totalSpendOnAllOrders:customer.totalSpendOnAllOrders
+            })
+        })
+    }
+
+    else if(phone){
+        const query = {phone:phone};
+
+        Customer.findOne(query, (err, customer)=>{
+            if(err){
+                console.log(err);
+                return res.status(500).send({
+                    error:'inrenal server error',
+                    message:'failed to query database'
+                })
+            }
+            return res.status(200).send({
+                email:customer.email,
+                phone:customer.phone,
+                id:customer.id,
+                totalSpendOnAllOrders:customer.totalSpendOnAllOrders
+            })
+        })
+    }
+}

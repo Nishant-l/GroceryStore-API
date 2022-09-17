@@ -30,15 +30,29 @@ url : {url}/orders:customerId
 
 3. Api to fetch specific customer detail with max order in year
 
-Method :  GET
-url : {url}/customers/?phone=123
+    Method :  GET
+    url : {url}/customers/?phone=123
                         or
         {url}/customers/?email=a@a.com
                         or
         {url}/customers/?email=a@a.com&phone=123
 
-        
+        Responce:
+             {
+                "email": "nnn@n.com",
+                "phone": 123456789,
+                "id": "6325bf31443e6d83ce7bd6b9",
+                "totalSpendOnAllOrders": 600
+            }
 
+            error
+            1.if nothing is passed in query param
+
+            Status:400
+            {
+                "error": "bad request",
+                "message": "email or phone required in query param"
+            }
 
 
 

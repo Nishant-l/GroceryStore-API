@@ -9,9 +9,10 @@ const app = express();
 app.use(express.json());
 
 //db Schamas
-// const Customer = require('./models/customer');
+const Customer = require('./models/customer');
 // const Product = require('./models/product');
 // const Order = require('./models/order');
+
 
 
 //Router
